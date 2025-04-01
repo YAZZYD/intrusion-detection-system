@@ -11,7 +11,7 @@ def main():
         print(f"dir '{captured_dir}' not found")
         return
     df=process_captures(captured_dir,description)
-    # print(df)
+    print(df)
 
 
 if __name__ == "__main__":
