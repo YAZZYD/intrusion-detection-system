@@ -4,6 +4,7 @@ from preprocessing.handlers.extract_features import extract_features
 from preprocessing.handlers.load_labels import load_labels
 from preprocessing.handlers.match_labels import match_labels
 from preprocessing.handlers.encode_attack_info import encode_attack_info
+from cleaning.clean_data import clean_data
 def process_captures(data_dir:str,desc_csv:str)->pd.DataFrame:
     labels_df= load_labels(desc_csv)
     features=[]
@@ -20,4 +21,5 @@ def process_captures(data_dir:str,desc_csv:str)->pd.DataFrame:
                 df['attack_subtype'] = attack_subtypes
             df=encode_attack_info(df)
             features.append(df)
-    return pd.concat(features,ignore_index=True)
+        all_features_df=pd.concat(features, ignore_index=True)
+        return clean_data(all_features_df,labels_df)

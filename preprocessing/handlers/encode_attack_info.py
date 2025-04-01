@@ -29,5 +29,4 @@ def encode_attack_info(df: pd.DataFrame) -> pd.DataFrame:
     if 'attack_subtype' in result_df.columns:
         result_df = encode('attack_subtype', result_df)
     
-    print(result_df)
     return result_df

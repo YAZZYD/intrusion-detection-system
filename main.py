@@ -48,6 +48,6 @@ def main():
                 break
             else:
                 print('(y/n) ?')
-    print(df)
+    
 if __name__ == "__main__":
     main()
