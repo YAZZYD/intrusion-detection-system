@@ -1,0 +1,89 @@
+* The creation date is when the packet is merged or reviewed completely. It may differ from the date the packet was actually collected.,,,,,,,,,
+"** The target device is the device which is being attacked. (It may be the device which ""performs"" attack for Mirai Botnet categories, exceptionally.)",,,,,,,,,
+No.,File Name,Creation Date*,File Size (KB),Target Device**,Category,Sub-category,Wireshark Rule to Filter Only Attack Packets,# Total Packets,# Attack Packets
+1,benign-dec.pcap,05/20/2019,117937,"NUGU, EZVIZ",Normal,Normal,-,137396,0
+2,mitm-arpspoofing-1-dec.pcap,05/31/2019,27045,EZVIZ,Man in the Middle (MITM),ARP Spoofing,"eth.addr == f0:18:98:5e:ff:9f and 
+((((ip.src == 192.168.0.16 and ip.dst == 192.168.0.13) 
+or (ip.src == 192.168.0.13 and ip.dst == 192.168.0.16)) 
+and !icmp and tcp) 
+or (arp.src.hw_mac == f0:18:98:5e:ff:9f 
+and (arp.dst.hw_mac == bc:1c:81:4b:ae:ba or arp.dst.hw_mac == 48:4b:aa:2c:d8:f9)))",65768,34855
+3,mitm-arpspoofing-2-dec.pcap,05/31/2019,12152,EZVIZ,Man in the Middle (MITM),ARP Spoofing,"eth.addr == f0:18:98:5e:ff:9f and 
+((((ip.src == 192.168.0.16 and ip.dst == 192.168.0.13) 
+or (ip.src == 192.168.0.13 and ip.dst == 192.168.0.16)) 
+and !icmp and tcp) 
+or (arp.src.hw_mac == f0:18:98:5e:ff:9f 
+and (arp.dst.hw_mac == bc:1c:81:4b:ae:ba or arp.dst.hw_mac == 48:4b:aa:2c:d8:f9)))",33121,13134
+4,mitm-arpspoofing-3-dec.pcap,05/31/2019,12812,EZVIZ,Man in the Middle (MITM),ARP Spoofing,"eth.addr == f0:18:98:5e:ff:9f and 
+((((ip.src == 192.168.0.16 and ip.dst == 192.168.0.13) 
+or (ip.src == 192.168.0.13 and ip.dst == 192.168.0.16)) 
+and !icmp and tcp) 
+or (arp.src.hw_mac == f0:18:98:5e:ff:9f 
+and (arp.dst.hw_mac == bc:1c:81:4b:ae:ba or arp.dst.hw_mac == 48:4b:aa:2c:d8:f9)))",34043,15144
+5,mitm-arpspoofing-4-dec.pcap,06/03/2019,18813,NUGU,Man in the Middle (MITM),ARP Spoofing,"eth.addr == f0:18:98:5e:ff:9f and 
+(((ip.addr == 192.168.0.24) 
+and !icmp and tcp) 
+or (arp.src.hw_mac == f0:18:98:5e:ff:9f 
+and (arp.dst.hw_mac == 04:32:f4:45:17:b3 or arp.dst.hw_mac == 88:36:6c:d7:1c:56)))",19914,13211
+6,mitm-arpspoofing-5-dec.pcap,06/03/2019,18284,NUGU,Man in the Middle (MITM),ARP Spoofing,"eth.addr == f0:18:98:5e:ff:9f and 
+(((ip.addr == 192.168.0.24) 
+and !icmp and tcp) 
+or (arp.src.hw_mac == f0:18:98:5e:ff:9f 
+and (arp.dst.hw_mac == 04:32:f4:45:17:b3 or arp.dst.hw_mac == 88:36:6c:d7:1c:56)))",20314,9743
+7,mitm-arpspoofing-6-dec.pcap,06/03/2019,19416,NUGU,Man in the Middle (MITM),ARP Spoofing,"eth.addr == f0:18:98:5e:ff:9f and 
+(((ip.addr == 192.168.0.24) 
+and !icmp and tcp) 
+or (arp.src.hw_mac == f0:18:98:5e:ff:9f 
+and (arp.dst.hw_mac == 04:32:f4:45:17:b3 or arp.dst.hw_mac == 88:36:6c:d7:1c:56)))",21024,15798
+8,dos-synflooding-1-dec.pcap,05/31/2019,5815,EZVIZ,Denial of Service (DoS),SYN Flooding,ip.src == 222.0.0.0/8 and tcp.flags.syn == 1 and ip.dst == 192.168.0.13 and tcp.dstport == 554 and tcp,40788,18703
+9,dos-synflooding-2-dec.pcap,05/31/2019,6130,EZVIZ,Denial of Service (DoS),SYN Flooding,ip.src == 222.0.0.0/8 and tcp.flags.syn == 1 and ip.dst == 192.168.0.13 and tcp.dstport == 554 and tcp,39742,16862
+10,dos-synflooding-3-dec.pcap,05/31/2019,2548,EZVIZ,Denial of Service (DoS),SYN Flooding,ip.src == 111.0.0.0/8 and tcp.flags.syn == 1 and ip.dst == 192.168.0.13 and tcp.dstport == 554 and tcp,26334,12538
+11,dos-synflooding-4-dec.pcap,06/05/2019,2800,NUGU,Denial of Service (DoS),SYN Flooding,ip.dst == 192.168.0.24 and tcp.flags.syn == 1 and ip.src == 111.0.0.0/8 and tcp and tcp.dstport == 19604,10561,4692
+12,dos-synflooding-5-dec.pcap,06/05/2019,888,NUGU,Denial of Service (DoS),SYN Flooding,ip.dst == 192.168.0.24 and tcp.flags.syn == 1 and ip.src == 111.0.0.0/8 and tcp and tcp.dstport == 19604,11366,5548
+13,dos-synflooding-6-dec.pcap,06/05/2019,1067,NUGU,Denial of Service (DoS),SYN Flooding,ip.dst == 192.168.0.24 and tcp.flags.syn == 1 and ip.src == 111.0.0.0/8 and tcp and tcp.dstport == 19604,12918,6303
+14,scan-hostport-1-dec.pcap,07/11/2019,19129,EZVIZ,Scanning,Host Discovery,(eth.src == f0:18:98:5e:ff:9f and arp and eth.dst == ff:ff:ff:ff:ff:ff) and frame.number < 13000,29352,434
+,,,,,Scanning,Port Scanning,ip.src == 192.168.0.15 and ip.dst == 192.168.0.13 and ((tcp.flags.syn == 1 and tcp.window_size == 1024) or tcp.flags.reset == 1),,1056
+15,scan-hostport-2-dec.pcap,07/11/2019,25198,EZVIZ,Scanning,Host Discovery,(eth.src == f0:18:98:5e:ff:9f and arp and eth.dst == ff:ff:ff:ff:ff:ff) and frame.number < 14500,37106,332
+,,,,,Scanning,Port Scanning,ip.src == 192.168.0.15 and ip.dst == 192.168.0.13 and ((tcp.flags.syn == 1 and tcp.window_size == 1024) or tcp.flags.reset == 1),,2369
+16,scan-hostport-3-dec.pcap,07/11/2019,6550,EZVIZ,Scanning,Host Discovery,(eth.src == f0:18:98:5e:ff:9f and arp and eth.dst == ff:ff:ff:ff:ff:ff) and frame.number < 2000,13555,488
+,,,,,Scanning,Port Scanning,ip.src == 192.168.0.15 and ip.dst == 192.168.0.13 and ((tcp.flags.syn == 1 and tcp.window_size == 1024) or tcp.flags.reset == 1),,1242
+17,scan-hostport-4-dec.pcap,07/11/2019,4772,NUGU,Scanning,Host Discovery,(eth.src == f0:18:98:5e:ff:9f and arp and eth.dst == ff:ff:ff:ff:ff:ff) and frame.number < 4000,7801,477
+,,,,,Scanning,Port Scanning,ip.src == 192.168.0.15 and ip.dst == 192.168.0.24 and ((tcp.flags.syn == 1 and tcp.window_size == 1024) or tcp.flags.reset == 1),,1230
+18,scan-hostport-5-dec.pcap,07/11/2019,1019,NUGU,Scanning,Host Discovery,(eth.src == f0:18:98:5e:ff:9f and arp and eth.dst == ff:ff:ff:ff:ff:ff) and frame.number < 1300,4760,438
+,,,,,Scanning,Port Scanning,ip.src == 192.168.0.15 and ip.dst == 192.168.0.24 and ((tcp.flags.syn == 1 and tcp.window_size == 1024) or tcp.flags.reset == 1),,1773
+19,scan-hostport-6-dec.pcap,07/11/2019,2151,NUGU,Scanning,Host Discovery,(eth.src == f0:18:98:5e:ff:9f and arp and eth.dst == ff:ff:ff:ff:ff:ff) and frame.number < 1000,6828,285
+,,,,,Scanning,Port Scanning,ip.src == 192.168.0.15 and ip.dst == 192.168.0.24 and ((tcp.flags.syn == 1 and tcp.window_size == 1024) or tcp.flags.reset == 1),,2116
+20,scan-portos-1-dec.pcap,07/11/2019,51444,EZVIZ,Scanning,Port Scanning,ip.src == 192.168.0.15 and ip.dst == 192.168.0.13 and ((tcp.flags.syn == 1 and tcp.window_size == 1024) or tcp.flags.reset == 1),73235,1096
+,,,,,Scanning,OS/Version Detection,(ip.src == 192.168.0.15 and ip.dst == 192.168.0.13) and (not icmp) and not (ip.src == 192.168.0.15 and ip.dst == 192.168.0.13 and ((tcp.flags.syn == 1 and tcp.window_size == 1024) or tcp.flags.reset == 1)),,475
+21,scan-portos-2-dec.pcap,07/11/2019,30820,EZVIZ,Scanning,Port Scanning,ip.src == 192.168.0.15 and ip.dst == 192.168.0.13 and ((tcp.flags.syn == 1 and tcp.window_size == 1024) or tcp.flags.reset == 1),48267,1077
+,,,,,Scanning,OS/Version Detection,(ip.src == 192.168.0.15 and ip.dst == 192.168.0.13) and (not icmp) and not (ip.src == 192.168.0.15 and ip.dst == 192.168.0.13 and ((tcp.flags.syn == 1 and tcp.window_size == 1024) or tcp.flags.reset == 1)),,640
+22,scan-portos-3-dec.pcap,07/11/2019,40841,EZVIZ,Scanning,Port Scanning,ip.src == 192.168.0.15 and ip.dst == 192.168.0.13 and ((tcp.flags.syn == 1 and tcp.window_size == 1024) or tcp.flags.reset == 1),65194,1088
+,,,,,Scanning,OS/Version Detection,(ip.src == 192.168.0.15 and ip.dst == 192.168.0.13) and (not icmp) and not (ip.src == 192.168.0.15 and ip.dst == 192.168.0.13 and ((tcp.flags.syn == 1 and tcp.window_size == 1024) or tcp.flags.reset == 1)),,605
+23,scan-portos-4-dec.pcap,07/11/2019,466,NUGU,Scanning,Port Scanning,ip.src == 192.168.0.15 and ip.dst == 192.168.0.24 and ((tcp.flags.syn == 1 and tcp.window_size == 1024) or tcp.flags.reset == 1),3046,1060
+,,,,,Scanning,OS/Version Detection,(ip.src == 192.168.0.15 and ip.dst == 192.168.0.24) and (not icmp) and not (ip.src == 192.168.0.15 and ip.dst == 192.168.0.24 and ((tcp.flags.syn == 1 and tcp.window_size == 1024) or tcp.flags.reset == 1)),,31
+24,scan-portos-5-dec.pcap,07/11/2019,2288,NUGU,Scanning,Port Scanning,ip.src == 192.168.0.15 and ip.dst == 192.168.0.24 and ((tcp.flags.syn == 1 and tcp.window_size == 1024) or tcp.flags.reset == 1),8966,3732
+,,,,,Scanning,OS/Version Detection,(ip.src == 192.168.0.15 and ip.dst == 192.168.0.24) and (not icmp) and not (ip.src == 192.168.0.15 and ip.dst == 192.168.0.24 and ((tcp.flags.syn == 1 and tcp.window_size == 1024) or tcp.flags.reset == 1)),,17
+25,scan-portos-6-dec.pcap,07/11/2019,5887,NUGU,Scanning,Port Scanning,ip.src == 192.168.0.15 and ip.dst == 192.168.0.24 and ((tcp.flags.syn == 1 and tcp.window_size == 1024) or tcp.flags.reset == 1),12370,3100
+,,,,,Scanning,OS/Version Detection,(ip.src == 192.168.0.15 and ip.dst == 192.168.0.24) and (not icmp) and not (ip.src == 192.168.0.15 and ip.dst == 192.168.0.24 and ((tcp.flags.syn == 1 and tcp.window_size == 1024) or tcp.flags.reset == 1)),,49
+26,mirai-udpflooding-1-dec.pcap,08/01/2019,45618,"EZVIZ (performs), external server (target)",Mirai Botnet,UDP Flooding,ip.dst == 210.89.164.90,417863,404863
+27,mirai-udpflooding-2-dec.pcap,08/01/2019,93868,"EZVIZ (performs), external server (target)",Mirai Botnet,UDP Flooding,ip.dst == 210.89.164.90,175694,69779
+28,mirai-udpflooding-3-dec.pcap,08/01/2019,45618,"NUGU (performs), external server (target)",Mirai Botnet,UDP Flooding,ip.dst == 210.89.164.90,417863,404863
+29,mirai-udpflooding-4-dec.pcap,08/01/2019,93868,"NUGU (performs), external server (target)",Mirai Botnet,UDP Flooding,ip.dst == 210.89.164.90,175694,69779
+30,mirai-ackflooding-1-dec.pcap,08/01/2019,12058,"EZVIZ (performs), external server (target)",Mirai Botnet,ACK Flooding,ip.dst == 210.89.164.90,42594,29594
+31,mirai-ackflooding-2-dec.pcap,08/01/2019,88760,"EZVIZ (performs), external server (target)",Mirai Botnet,ACK Flooding,ip.dst == 210.89.164.90,114137,8222
+32,mirai-ackflooding-3-dec.pcap,08/01/2019,12058,"NUGU (performs), external server (target)",Mirai Botnet,ACK Flooding,ip.dst == 210.89.164.90,42594,29594
+33,mirai-ackflooding-4-dec.pcap,08/01/2019,88760,"NUGU (performs), external server (target)",Mirai Botnet,ACK Flooding,ip.dst == 210.89.164.90,114137,8222
+34,mirai-httpflooding-1-dec.pcap,08/01/2019,10093,"EZVIZ (performs), external server (target)",Mirai Botnet,HTTP Flooding,ip.dst == 210.89.164.90,13764,764
+35,mirai-httpflooding-2-dec.pcap,08/01/2019,88527,"EZVIZ (performs), external server (target)",Mirai Botnet,HTTP Flooding,ip.dst == 210.89.164.90,110383,4468
+36,mirai-httpflooding-3-dec.pcap,08/01/2019,10093,"NUGU (performs), external server (target)",Mirai Botnet,HTTP Flooding,ip.dst == 210.89.164.90,13764,764
+37,mirai-httpflooding-4-dec.pcap,08/01/2019,88527,"NUGU (performs), external server (target)",Mirai Botnet,HTTP Flooding,ip.dst == 210.89.164.90,110383,4468
+38,mirai-hostbruteforce-1-dec.pcap,09/05/2019,130094,"EZVIZ (performs), NUGU (target)",Mirai Botnet,Host Discovery,arp.dst.proto_ipv4 == 192.168.0.0/24 and arp.src.proto_ipv4 == 192.168.0.13 and eth.dst == ff:ff:ff:ff:ff:ff,135146,113
+,,,,,Mirai Botnet,Telnet Bruteforce,tcp.dstport==23 and ip.src==192.168.0.13,,176
+39,mirai-hostbruteforce-2-dec.pcap,09/05/2019,54785,"NUGU (performs), EZVIZ (target)",Mirai Botnet,Host Discovery,arp.dst.proto_ipv4 == 192.168.0.0/24 and arp.src.proto_ipv4 == 192.168.0.24 and eth.dst == ff:ff:ff:ff:ff:ff,81307,101
+,,,,,Mirai Botnet,Telnet Bruteforce,tcp.dstport==23 and ip.src==192.168.0.24,,177
+40,mirai-hostbruteforce-3-dec.pcap,09/10/2019,64400,"EZVIZ (performs), NUGU (target)",Mirai Botnet,Host Discovery,arp.dst.proto_ipv4 == 192.168.0.0/24 and arp.src.proto_ipv4 == 192.168.0.13 and eth.dst == ff:ff:ff:ff:ff:ff,93647,210
+,,,,,Mirai Botnet,Telnet Bruteforce,tcp.dstport==23 and ip.src==192.168.0.13,,500
+41,mirai-hostbruteforce-4-dec.pcap,09/10/2019,77443,"NUGU (performs), EZVIZ (target)",Mirai Botnet,Host Discovery,arp.dst.proto_ipv4 == 192.168.0.0/24 and arp.src.proto_ipv4 == 192.168.0.24 and eth.dst == ff:ff:ff:ff:ff:ff,98691,123
+,,,,,Mirai Botnet,Telnet Bruteforce,tcp.dstport==23 and ip.src==192.168.0.24,,560
+42,mirai-hostbruteforce-5-dec.pcap,09/10/2019,34958,"EZVIZ (performs), NUGU (target)",Mirai Botnet,Host Discovery,arp.dst.proto_ipv4 == 192.168.0.0/24 and arp.src.proto_ipv4 == 192.168.0.13 and eth.dst == ff:ff:ff:ff:ff:ff,44564,126
+,,,,,Mirai Botnet,Telnet Bruteforce,tcp.dstport==23 and ip.src==192.168.0.13,,511
