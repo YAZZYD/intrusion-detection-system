@@ -1,4 +1,5 @@
-def match_labels(file_name,labels_df):
+import pandas as pd
+def match_labels(file_name:str,labels_df:pd.DataFrame)->dict[str,any]:
     matching_labels= labels_df[labels_df['file_name'] == file_name]
     if matching_labels.empty:
         print(f"No labels found for {file_name}")

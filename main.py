@@ -17,17 +17,37 @@ def read_preprocessed_data():
     preprocessed_file = './dataset/preprocessed/preprocessed_data.csv'
     return pd.read_csv(preprocessed_file)
 
+def save_processed_data(df:pd.DataFrame):
+    preprocessed_file = './dataset/preprocessed/preprocessed_data.csv'
+    df.to_csv(preprocessed_file, index=False)
+    print(f"Processed data saved to {preprocessed_file}")
+
 def main():
     parser = argparse.ArgumentParser(description="IDS (Intrusion Detection System)")
     parser.add_argument('--pre-processed',action='store_true',help="Use preprocessed data if available")
     args= parser.parse_args()
     df=None
+    preprocessed_loaded=False
     if args.pre_processed:
         df=read_preprocessed_data()
-        print(df)
+        preprocessed_loaded=True
+        print('Loaded preprocessed data.')
     else:
         df= process_data()
-   
+        print("Data processed.")
 
+    if df is not None and not preprocessed_loaded:
+        res = ''
+        while res not in ['y', 'n']:
+            res = input("Do you want to save the current processed data? (y/n): ").strip().lower()
+            if res == 'y':
+                save_processed_data(df)
+                break
+            elif res=='n':
+                print("Processed data not saved.")
+                break
+            else:
+                print('(y/n) ?')
+    print(df)
 if __name__ == "__main__":
     main()

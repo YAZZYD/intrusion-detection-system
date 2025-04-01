@@ -3,7 +3,7 @@ import pandas as pd
 from scapy.all import *
 from scapy.layers.inet import IP, TCP,UDP
 
-def extract_features(pcap_file):
+def extract_features(pcap_file:str)->pd.DataFrame:
     print(f"Processing {pcap_file}...")
     packets = rdpcap(pcap_file)
     features= []

@@ -1,6 +1,6 @@
 import pandas as pd
 
-def load_labels(desc):
+def load_labels(desc:str)->pd.DataFrame:
     column_names = ['id', 'file_name', 'created_at', 'file_size_kb', 'target_device', 
                     'attack_type', 'attack_subtype', 'filter_expr', 'packet_count', 'attack_packet_count']
     labels_df = pd.read_csv(desc,skiprows=2)

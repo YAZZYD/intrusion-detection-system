@@ -3,8 +3,8 @@ import pandas as pd
 from preprocessing.handlers.extract_features import extract_features
 from preprocessing.handlers.load_labels import load_labels
 from preprocessing.handlers.match_labels import match_labels
-
-def process_captures(data_dir,desc_csv):
+from preprocessing.handlers.encode_attack_info import encode_attack_info
+def process_captures(data_dir:str,desc_csv:str)->pd.DataFrame:
     labels_df= load_labels(desc_csv)
     features=[]
     for filename in os.listdir(data_dir):
@@ -18,5 +18,6 @@ def process_captures(data_dir,desc_csv):
                 attack_subtypes = '|'.join(attack_info['attack_subtype']) if attack_info['attack_subtype'] else 'None'
                 df['attack_type'] = attack_types
                 df['attack_subtype'] = attack_subtypes
+            df=encode_attack_info(df)
             features.append(df)
     return pd.concat(features,ignore_index=True)
