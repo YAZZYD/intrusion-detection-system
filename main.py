@@ -2,6 +2,7 @@ import os
 import argparse
 import pandas as pd
 from preprocessing.process_captures import process_captures
+from analyzing.analyze import analyaze
 import warnings
 warnings.filterwarnings('ignore')
 
@@ -36,18 +37,20 @@ def main():
         df= process_data()
         print("Data processed.")
 
-    if df is not None and not preprocessed_loaded:
-        res = ''
-        while res not in ['y', 'n']:
-            res = input("Do you want to save the current processed data? (y/n): ").strip().lower()
-            if res == 'y':
-                save_processed_data(df)
-                break
-            elif res=='n':
-                print("Processed data not saved.")
-                break
-            else:
-                print('(y/n) ?')
+    if df is not None:
+        if not preprocessed_loaded:
+            res = ''
+            while res not in ['y', 'n']:
+                res = input("Do you want to save the current processed data? (y/n): ").strip().lower()
+                if res == 'y':
+                    save_processed_data(df)
+                    break
+                elif res=='n':
+                    print("Processed data not saved.")
+                    break
+                else:
+                    print('(y/n) ?')
+        analyaze(df)
     
 if __name__ == "__main__":
     main()
