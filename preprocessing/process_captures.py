@@ -21,5 +21,5 @@ def process_captures(data_dir:str,desc_csv:str)->pd.DataFrame:
                 df['attack_subtype'] = attack_subtypes
             df=encode_attack_info(df)
             features.append(df)
-        all_features_df=pd.concat(features, ignore_index=True)
-        return clean_data(all_features_df)
+    all_features_df=pd.concat(features, ignore_index=True)
+    return clean_data(all_features_df)

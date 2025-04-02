@@ -2,7 +2,7 @@ import os
 import argparse
 import pandas as pd
 from preprocessing.process_captures import process_captures
-from analyzing.analyze import analyaze
+from analyzing.analyze import analyze
 import warnings
 warnings.filterwarnings('ignore')
 
@@ -50,7 +50,7 @@ def main():
                     break
                 else:
                     print('(y/n) ?')
-        analyaze(df)
+        analyze(df)
     
 if __name__ == "__main__":
     main()
