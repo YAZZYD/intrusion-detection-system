@@ -30,5 +30,7 @@ pip install -r requirements.txt
 You can use the provided `Makefile` to easily run different parts of the project.
 
 ```bash
-make run                # Run the main script
+make run-with-preprocessing                # Run the script with preprocess dataset
+make run-without-preprocessing             # Run the script without preprocess dataset (read directly from csv)
+make cache-clear                           #clear '__pycache__' (you can use pyclean if python3.8+)
 ```
