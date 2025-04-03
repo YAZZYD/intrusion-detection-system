@@ -9,3 +9,4 @@ tensorflow
 keras
 imbalanced-learn
 simple_term_menu
+tqdm
