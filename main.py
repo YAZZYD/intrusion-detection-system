@@ -1,8 +1,11 @@
 import os
+import sys
 import argparse
 import pandas as pd
 from preprocessing.process_captures import process_captures
 from analyzing.analyze import analyze
+from training.train_model import train_model
+from scripts.terminal import select_attack
 import warnings
 warnings.filterwarnings('ignore')
 
@@ -34,6 +37,7 @@ def main():
         preprocessed_loaded=True
         print('Loaded preprocessed data.')
     else:
+        select_attack()
         df= process_data()
         print("Data processed.")
 
@@ -50,7 +54,22 @@ def main():
                     break
                 else:
                     print('(y/n) ?')
-        analyze(df)
+        print("Analyzing data...")
+        x,y=analyze(df)
+        print("Data analysis completed.")
+        print("Training model...")
+        train_model(x, y)
+        print("Model training completed.")
     
+
 if __name__ == "__main__":
-    main()
+  
+    try:
+        main()
+    except KeyboardInterrupt:
+        print("\nExiting...")
+        sys.exit(0)
+    except Exception as e:
+        print(f"An error occurred: {e}")
+        
+        sys.exit(1)

@@ -3,15 +3,13 @@ import numpy as np
 import matplotlib.pyplot as plt
 import seaborn as sns
 import pandas as pd
-import matplotlib.gridspec as gs
 
-def analyze(feature_df: pd.DataFrame):
+def analyze(feature_df: pd.DataFrame)-> tuple[pd.DataFrame, pd.Series]:
     os.makedirs('./results/illustrations',exist_ok=True)
 
     feature_columns =[col for col in feature_df.columns if not col.startswith(('file_name','attack_type_','attack_subtype_'))]
     x = feature_df[feature_columns]
-    attack_columns = [col for col in feature_df.columns if col.startswith(('attack_type_','attack_subtype_'))]
-    y= (feature_df[attack_columns].sum(axis=1) > 0).astype(int)
+    y = feature_df['is_attack']
 
     print("Dataset shape:", x.shape)
     print("\nFeature statistics:")
@@ -48,3 +46,42 @@ def analyze(feature_df: pd.DataFrame):
     plt.tight_layout()
     plt.savefig('./results/illustrations/missing_values_map.png')
     plt.close()
+
+    pair_data=x.copy()
+    pair_data['target']=y
+    plt.figure(figsize=(16,16))
+    g = sns.pairplot(pair_data,hue='target', diag_kind='kde', plot_kws={'alpha':0.6})
+    plt.suptitle('Pairplot of Features', y=1.02)
+    plt.savefig('./results/illustrations/pairplot.png')
+    plt.close()
+
+      # Box Plots
+    plt.figure(figsize=(16, rows * 4))
+    for i, feature in enumerate(feature_columns):
+        plt.subplot(rows, cols, i + 1)
+        sns.boxplot(x=y, y=x[feature])
+        plt.title(f'Box Plot of {feature} by Target')
+        plt.tight_layout()
+    plt.savefig('./results/illustrations/feature_boxplots.png')
+    plt.close()
+
+    #Scatter Plots 
+    corr_matrix = x.corr().abs()
+    upper = corr_matrix.where(np.triu(np.ones(corr_matrix.shape), k=1).astype(bool))
+    highest_corrs = upper.stack().sort_values(ascending=False)[:10]  # Top 10 correlations
+    
+    plt.figure(figsize=(16, 20))
+    for i, (idx, val) in enumerate(highest_corrs.items()):
+        if i >= 10: 
+            break
+        plt.subplot(5, 2, i + 1)
+        feature1, feature2 = idx
+        sns.scatterplot(x=x[feature1], y=x[feature2], hue=y, alpha=0.6)
+        plt.title(f'Correlation: {val:.2f}')
+        plt.xlabel(feature1)
+        plt.ylabel(feature2)
+        plt.tight_layout()
+    plt.savefig('./results/illustrations/feature_scatter_plots.png')
+    plt.close()
+
+    return x, y
