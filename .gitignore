@@ -3,3 +3,4 @@
 /results/illustrations/*
 /dataset/captured/*
 /dataset/*.pcap
+info.json
