@@ -2,10 +2,12 @@ import os
 import sys
 import argparse
 import pandas as pd
+from sklearn.model_selection import train_test_split
 from preprocessing.process_captures import process_captures
 from analyzing.analyze import analyze
 from training.train_model import train_model
 from scripts.terminal import select_attack
+from results.evaluation import evaluate_model
 import warnings
 warnings.filterwarnings('ignore')
 
@@ -54,13 +56,18 @@ def main():
                     break
                 else:
                     print('(y/n) ?')
-        print("Analyzing data...")
         x,y=analyze(df)
-        print("Data analysis completed.")
-        print("Training model...")
-        train_model(x, y)
-        print("Model training completed.")
-    
+        
+        x_train, x_test, y_train, y_test = train_test_split(x, y, test_size=0.2, random_state=42)
+        
+        model=train_model(x_train, y_train)
+        
+        y_pred=model.predict(x_test)
+        
+        evaluate_model(y_test, y_pred)
+    else:
+        print("No data to process.")
+        return
 
 if __name__ == "__main__":
   

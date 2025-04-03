@@ -7,6 +7,8 @@ import pandas as pd
 def analyze(feature_df: pd.DataFrame)-> tuple[pd.DataFrame, pd.Series]:
     os.makedirs('./results/illustrations',exist_ok=True)
 
+    print("Analyzing data...")
+
     feature_columns =[col for col in feature_df.columns if not col.startswith(('file_name','attack_type_','attack_subtype_'))]
     x = feature_df[feature_columns]
     y = feature_df['is_attack']
@@ -83,5 +85,6 @@ def analyze(feature_df: pd.DataFrame)-> tuple[pd.DataFrame, pd.Series]:
         plt.tight_layout()
     plt.savefig('./results/illustrations/feature_scatter_plots.png')
     plt.close()
+    print("Data analysis completed.")
 
     return x, y
