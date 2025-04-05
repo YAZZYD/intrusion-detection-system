@@ -1,6 +1,8 @@
-run-without-preprocessing:
+train-with-pre-processed:
 	python3 main.py --pre-processed
-run-with-preprocessing:
+train:
 	python3 main.py
+test-model:
+	python3 main.py --test-model
 cache-clear:
 	python3 scripts/cache_clear.py

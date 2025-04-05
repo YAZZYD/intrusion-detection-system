@@ -1,6 +1,8 @@
 /*/*/__pycache__/
 /*/__pycache__/
+/dataset/preprocessed/*
 /results/illustrations/*
 /dataset/captured/*
-/dataset/*.pcap
+/dataset/test/*
+/model/*.pkl
 info.json
