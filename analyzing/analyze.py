@@ -9,10 +9,9 @@ def analyze(feature_df: pd.DataFrame)-> tuple[pd.DataFrame, pd.Series]:
 
     print("Analyzing data...")
 
-    feature_columns =[col for col in feature_df.columns if not col.startswith(('file_name','attack_type_','attack_subtype_'))]
+    feature_columns = feature_df.drop(columns=['is_attack', 'attack_type', 'attack_subtype']).columns
     x = feature_df[feature_columns]
     y = feature_df['is_attack']
-
     print("Dataset shape:", x.shape)
     print("\nFeature statistics:")
     print(x.describe())

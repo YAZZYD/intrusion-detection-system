@@ -3,12 +3,14 @@ import sys
 import argparse
 import pandas as pd
 from sklearn.model_selection import train_test_split
+from sklearn.preprocessing import StandardScaler
 from preprocessing.process_captures import process_captures
 from analyzing.analyze import analyze
 from training.train_model import train_model
 from scripts.terminal import select_attack
 from results.evaluation import evaluate_model
 import warnings
+import traceback
 warnings.filterwarnings('ignore')
 
 def process_data():
@@ -58,9 +60,12 @@ def main():
                     print('(y/n) ?')
         x,y=analyze(df)
         
-        x_train, x_test, y_train, y_test = train_test_split(x, y, test_size=0.2, random_state=42)
+        x_train, x_test, y_train, y_test = train_test_split(x, y, test_size=0.2,stratify=y, random_state=42)
+        scaler = StandardScaler()
+        x_train = scaler.fit_transform(x_train)
+        x_test = scaler.transform(x_test)
         
-        model=train_model(x_train, y_train)
+        model=train_model(x_train, y_train,columns=x.columns)
         
         y_pred=model.predict(x_test)
         
@@ -78,5 +83,5 @@ if __name__ == "__main__":
         sys.exit(0)
     except Exception as e:
         print(f"An error occurred: {e}")
-        
+        traceback.print_exc()
         sys.exit(1)

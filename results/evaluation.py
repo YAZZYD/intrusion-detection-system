@@ -1,10 +1,11 @@
-from sklearn.metrics import accuracy_score, confusion_matrix
+from sklearn.metrics import accuracy_score, confusion_matrix, classification_report
 import seaborn as sns
 import matplotlib.pyplot as plt
 
 def evaluate_model(y_true, y_pred):
     print("Model evaluation...")
-
+    print("Classification Report:")
+    print(classification_report(y_true, y_pred, target_names=['Normal', 'Attack']))
     accuracy = accuracy_score(y_true, y_pred)
     print(f"Test Accuracy: {accuracy:.2f}")
     conf_matrix = confusion_matrix(y_true, y_pred)
