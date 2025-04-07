@@ -14,6 +14,11 @@ import warnings
 import traceback
 warnings.filterwarnings('ignore')
 
+GREEN = "\033[1;92m"
+RED = "\033[1;91m"
+RESET = "\033[0m"
+
+
 def process_data():
     captured_dir = './dataset/captured'
     description = './dataset/description.csv'
@@ -39,12 +44,12 @@ def save_model(model):
 def interactive_question(quest:str,callback,*args):
     res = ''
     while res not in ['y', 'n']:
-        res = input("Do you want to save the current processed data? (y/n): ").strip().lower()
+        res = input(quest).strip().lower()
         if res == 'y':
             callback(*args)
             return
         elif res=='n':
-            print("Processed data not saved.")
+            print("Operation cancelled.")
             return
         else:
             print('(y/n) ?')
@@ -73,8 +78,12 @@ def main():
         df= df.drop(columns=['is_attack','attack_type','attack_subtype'],errors='ignore')
         predictions = model.predict(df)
         print("Predictions made.")
+
         for i, pred in enumerate(predictions):
-            print(f"Packet {i} → {'Malicious' if pred == 1 else 'Harmless'}")
+            color = RED if pred == 1 else GREEN
+            label = 'Malicious' if pred == 1 else 'Harmless'
+            print(f"Packet {i} → {color}{label}{RESET}")
+
         print("Model testing completed.")
         return
     else:
